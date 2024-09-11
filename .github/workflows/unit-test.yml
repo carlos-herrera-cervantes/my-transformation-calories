@@ -2,6 +2,9 @@ name: Unit Tests
 
 on: [push]
 
+env:
+  MONGODB_URI: mongodb://localhost:27017/my-transformation-calories
+
 jobs:
   build:
     runs-on: ubuntu-latest
