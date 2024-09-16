@@ -1,14 +1,15 @@
 package com.mytransformation.calories.controllers
 
+import java.time.LocalDateTime
+
 import com.mytransformation.calories.config.*
 import com.mytransformation.calories.models.*
 import com.mytransformation.calories.repositories.*
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.http.*
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("${Api.PATH}/v1/foods")
@@ -17,6 +18,13 @@ class FoodController @Autowired constructor(private val foodRepository: FoodRepo
     fun getAll(): ResponseEntity<List<Food>> {
         val foods: List<Food> = foodRepository.findAll()
         return ResponseEntity(foods, HttpStatus.OK)
+    }
+
+    @GetMapping("{id}")
+    fun get(@PathVariable("id") id: String): ResponseEntity<Food> {
+        val food: Food = foodRepository.findByIdOrNull(id)
+            ?: return ResponseEntity(null, HttpStatus.NOT_FOUND)
+        return ResponseEntity(food, HttpStatus.OK)
     }
 
     @PostMapping

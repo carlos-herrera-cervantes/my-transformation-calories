@@ -6,4 +6,9 @@ import org.springframework.data.mongodb.repository.*
 import org.springframework.stereotype.Repository
 
 @Repository
-interface FoodRepository : MongoRepository<Food, String> {}
+interface FoodRepository : MongoRepository<Food, String> {
+    @Aggregation(pipeline = [
+        "{ '\$sort': { created_at: -1 } }"
+    ])
+    override fun findAll(): List<Food>
+}
