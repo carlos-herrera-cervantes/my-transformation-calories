@@ -15,4 +15,7 @@ interface ConsumptionResultRepository : MongoRepository<ConsumptionResult, Strin
 
     @Query("{ user_id: ?0, created_at: { \$gte: ?1, \$lte: ?2 } }")
     fun findAllMe(userId: String, from: LocalDateTime, to: LocalDateTime): List<ConsumptionResult>
+
+    @Query("{ _id: ?0, user_id: ?1 }")
+    fun findMe(id: String, userId: String): ConsumptionResult?
 }
