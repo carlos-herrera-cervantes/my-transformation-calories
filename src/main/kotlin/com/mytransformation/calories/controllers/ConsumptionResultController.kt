@@ -31,4 +31,23 @@ class ConsumptionResultController @Autowired constructor(
             ?: return ResponseEntity(null, HttpStatus.NOT_FOUND)
         return ResponseEntity(result, HttpStatus.OK)
     }
+
+    @PutMapping("/me/{id}")
+    fun update(
+        @RequestHeader("user-id") userId: String,
+        @PathVariable("id") id: String,
+        @RequestBody consumptionResult: ConsumptionResult
+    ): ResponseEntity<ConsumptionResult> {
+        consumptionResult.updatedAt = LocalDateTime.now()
+
+        val update: ConsumptionResult? = consumptionResultRepository.findMe(id, userId)
+
+        if (update == null) {
+            return ResponseEntity(null, HttpStatus.NOT_FOUND)
+        } else {
+            consumptionResultRepository.save(consumptionResult)
+        }
+
+        return ResponseEntity(update, HttpStatus.OK)
+    }
 }
