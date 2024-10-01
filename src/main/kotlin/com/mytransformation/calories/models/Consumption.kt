@@ -50,6 +50,7 @@ data class Consumption(
     val partialFood: PartialFood = PartialFood()
 )
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class PartialFood(
     @Field("name")
     val name: String = "",

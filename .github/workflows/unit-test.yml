@@ -4,6 +4,7 @@ on: [push]
 
 env:
   MONGODB_URI: mongodb://localhost:27017/my-transformation-calories
+  APP_PORT: 8080
 
 jobs:
   build:
