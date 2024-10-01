@@ -83,7 +83,21 @@ class ConsumptionController @Autowired constructor(
     ): ResponseEntity<HttpStatus> {
         val queryResult: Consumption = consumptionRepository.findMe(userId, id)
             ?: return ResponseEntity(HttpStatus.NO_CONTENT)
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val moment: String = queryResult.moment.format(formatter)
+
+        consumptionResultRepository.findByDate(userId, moment)?.let {
+            it.calories -= queryResult.calories
+            it.protein -= queryResult.protein
+            it.carbs -= queryResult.carbs
+            it.fats -= queryResult.fats
+            it.updatedAt = LocalDateTime.now()
+            consumptionResultRepository.save(it)
+        }
+
         consumptionRepository.delete(queryResult)
+
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }
