@@ -25,6 +25,13 @@ class ConsumptionResultController @Autowired constructor(
         return ResponseEntity(consumptionResult, HttpStatus.OK)
     }
 
+    @GetMapping("me/{id}")
+    fun getById(@RequestHeader("user-id") userId: String, @PathVariable("id") id: String): ResponseEntity<ConsumptionResult> {
+        val result: ConsumptionResult = consumptionResultRepository.findMe(id, userId)
+            ?: return ResponseEntity(null, HttpStatus.NOT_FOUND)
+        return ResponseEntity(result, HttpStatus.OK)
+    }
+
     @GetMapping("/current/me")
     fun get(@RequestHeader("user-id") userId: String, @RequestParam date: String): ResponseEntity<ConsumptionResult> {
         val result: ConsumptionResult = consumptionResultRepository.findByDate(userId, date)
