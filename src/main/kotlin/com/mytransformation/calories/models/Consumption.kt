@@ -20,7 +20,7 @@ data class Consumption(
     val userId: String = "",
 
     @Field("quantity")
-    val quantity: Int = 0,
+    val quantity: Double = 0.0,
 
     @Field("food_id")
     val foodId: String = "",
@@ -62,6 +62,6 @@ data class PartialFood(
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class ConsumptionCreation(
     val foodId: String = "",
-    val quantity: Int = 0,
+    val quantity: Double = 0.0,
     val moment: LocalDateTime = LocalDateTime.now()
 )
