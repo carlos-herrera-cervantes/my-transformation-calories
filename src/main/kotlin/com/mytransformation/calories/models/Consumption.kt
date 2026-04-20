@@ -19,6 +19,9 @@ data class Consumption(
     @Field("user_id")
     val userId: String = "",
 
+    @Field("meal_id")
+    val mealId: String = "",
+
     @Field("quantity")
     val quantity: Double = 0.0,
 
