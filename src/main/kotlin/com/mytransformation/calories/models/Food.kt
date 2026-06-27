@@ -42,7 +42,7 @@ data class Food(
     @Field("updated_at")
     var updatedAt: LocalDateTime = LocalDateTime.now()
 ) {
-    fun calculateConsumption(userId: String, consumptionCreation: ConsumptionCreation): Consumption {
+    fun calculateConsumption(userId: String, mealId: String, consumptionCreation: ConsumptionCreation): Consumption {
         val caloriesConsumed: Double = (this.calories / this.portion) * consumptionCreation.quantity
         val proteinsConsumed: Double = (this.protein / this.portion) * consumptionCreation.quantity
         val fatsConsumed: Double = (this.fats / this.portion) * consumptionCreation.quantity
@@ -60,7 +60,8 @@ data class Food(
             partialFood = PartialFood(
                 name = this.name,
                 measurementUnit = this.measurementUnit
-            )
+            ),
+            mealId = mealId,
         )
     }
 }
