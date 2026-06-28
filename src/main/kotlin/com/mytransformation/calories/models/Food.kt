@@ -36,6 +36,15 @@ data class Food(
     @Field("fats")
     val fats: Double = 0.0,
 
+    @Field("sodium")
+    val sodium: Double = 0.0,
+
+    @Field("sugar")
+    val sugar: Double = 0.0,
+
+    @Field("calcium")
+    val calcium: Double = 0.0,
+
     @Field("created_at")
     val createdAt: LocalDateTime = LocalDateTime.now(),
 
@@ -47,6 +56,9 @@ data class Food(
         val proteinsConsumed: Double = (this.protein / this.portion) * consumptionCreation.quantity
         val fatsConsumed: Double = (this.fats / this.portion) * consumptionCreation.quantity
         val carbsConsumed: Double = (this.carbs / this.portion) * consumptionCreation.quantity
+        val sodiumConsumed: Double = (this.sodium / this.portion) * consumptionCreation.quantity
+        val calciumConsumed: Double = (this.calcium / this.portion) * consumptionCreation.quantity
+        val sugarConsumed: Double = (this.sugar / this.portion) * consumptionCreation.quantity
 
         return Consumption(
             userId = userId,
@@ -61,6 +73,9 @@ data class Food(
                 name = this.name,
                 measurementUnit = this.measurementUnit
             ),
+            sodium = sodiumConsumed,
+            sugar = sugarConsumed,
+            calcium = calciumConsumed,
             mealId = mealId,
         )
     }

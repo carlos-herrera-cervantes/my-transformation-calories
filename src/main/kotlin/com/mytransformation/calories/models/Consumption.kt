@@ -40,6 +40,15 @@ data class Consumption(
     @Field("fats")
     val fats: Double = 0.0,
 
+    @Field("sodium")
+    val sodium: Double = 0.0,
+
+    @Field("sugar")
+    val sugar: Double = 0.0,
+
+    @Field("calcium")
+    val calcium: Double = 0.0,
+
     @Field("moment")
     var moment: LocalDateTime = LocalDateTime.now(),
 
