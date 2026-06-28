@@ -31,6 +31,15 @@ data class ConsumptionResult (
     @Field("fats")
     var fats: Double = 0.0,
 
+    @Field("sodium")
+    var sodium: Double = 0.0,
+
+    @Field("sugar")
+    var sugar: Double = 0.0,
+
+    @Field("calcium")
+    var calcium: Double = 0.0,
+
     @Field("moment")
     val moment: String = "",
 

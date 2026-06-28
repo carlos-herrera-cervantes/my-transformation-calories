@@ -123,6 +123,9 @@ class ConsumptionController @Autowired constructor(
                 protein = consumption.protein,
                 carbs = consumption.carbs,
                 fats = consumption.fats,
+                sodium = consumption.sodium,
+                calcium = consumption.calcium,
+                sugar = consumption.sugar,
                 moment = moment,
                 createdAt = consumptionCreation.moment
             ))
@@ -131,6 +134,9 @@ class ConsumptionController @Autowired constructor(
             consumptionSum.protein += consumption.protein
             consumptionSum.carbs += consumption.carbs
             consumptionSum.fats += consumption.fats
+            consumptionSum.sodium += consumption.sodium
+            consumptionSum.calcium += consumption.calcium
+            consumptionSum.sugar += consumption.sugar
             consumptionSum.updatedAt = LocalDateTime.now()
             consumptionResultRepository.save(consumptionSum)
         }
