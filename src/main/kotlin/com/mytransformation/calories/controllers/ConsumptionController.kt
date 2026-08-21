@@ -102,6 +102,9 @@ class ConsumptionController @Autowired constructor(
             it.protein -= queryResult.protein
             it.carbs -= queryResult.carbs
             it.fats -= queryResult.fats
+            it.sugar -= queryResult.sugar
+            it.sodium -= queryResult.sodium
+            it.calcium -= queryResult.calcium
             it.updatedAt = LocalDateTime.now()
             consumptionResultRepository.save(it)
         }
